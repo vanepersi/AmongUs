@@ -1,0 +1,136 @@
+# Among Us — social deduction for Paper 26.1.2+
+# Creative Minecraft twists:
+# - Dyed leather crew colors
+# - Minecraft-flavored tasks (wires, download, fuel, scan, divert, clean vents)
+# - Knife kills leave ArmorStand bodies with player heads
+# - Vents teleport impostors between marked points
+# - Sabotage: lights (blindness) or reactor meltdown (all living must click to fix)
+# - Meetings freeze players at cafeteria with a head-vote GUI
+
+min-players: 4
+max-players: 10
+
+# Impostors = max(1, players / players-per-impostor)
+players-per-impostor: 5
+max-impostors: 3
+
+lobby-countdown-seconds: 20
+start-countdown-seconds: 5
+discussion-seconds: 30
+voting-seconds: 45
+kill-cooldown-seconds: 25
+emergency-cooldown-seconds: 30
+sabotage-cooldown-seconds: 35
+reactor-meltdown-seconds: 35
+round-time-seconds: 0   # 0 = no hard time limit
+
+tasks-per-crewmate: 4
+common-task-chance: 0.35
+task-complete-radius: 2.5
+
+entry-fee: 0.0
+teleport-on-end: true
+clear-items-on-end: true
+ghosts-can-do-tasks: true
+ghosts-fly: true
+hide-nametags-in-game: true
+impostor-glow-to-impostors: true
+
+# Kill range (blocks) for left-click knife
+kill-range: 3.0
+
+# Gems → arcade points
+gems:
+  task: 8
+  kill: 20
+  report: 5
+  correct-eject: 35
+  survive: 25
+  impostor-win: 60
+  crewmate-win: 50
+  points-per-gem: 1.0
+
+reward:
+  deposit-to-vault: false
+  commands: []
+
+action-bar-waiting: "&cAmong Us &8| &f{count}/{max} &7waiting"
+action-bar-playing: "&cAmong Us &8| &aTasks &f{tasks}% &8| &7Alive &f{alive} &8| &cImp &f{imps}"
+action-bar-meeting: "&6Meeting &8| &e{phase} &f{seconds}s &8| &7Vote with the book"
+action-bar-sabotage: "&c&lSABOTAGE &8| &4{sabotage} &f{seconds}s"
+
+messages:
+  prefix: "&8[&cAmong Us&8] &r"
+  no-permission: "&cYou don't have permission."
+  players-only: "&cOnly players can use this command."
+  arena-not-found: "&cArena &e{arena}&c was not found."
+  arena-not-ready: "&cArena &e{arena}&c needs lobby, cafeteria, spawns, emergency button, and at least one task + vent."
+  arena-busy: "&cArena &e{arena}&c is already in a match."
+  arena-full: "&cArena &e{arena}&c is full (&e{max}&c players)."
+  already-playing: "&cYou are already in an Among Us game."
+  not-playing: "&cYou are not in an Among Us game."
+  joined-waiting: "&aJoined &e{arena}&a (&f{count}/{max}&a). Waiting for crewmates..."
+  lobby-countdown: "&eMatch starts in &f{seconds}&e..."
+  need-more-players: "&cNeed at least &e{min}&c players to start."
+  left: "&eYou left Among Us."
+  player-left: "&e{player} &7left the lobby."
+  countdown: "&e{seconds}"
+  go: "&a&lGO! &7Complete tasks. Trust no one."
+  role-crewmate: "&aYou are a &lCREWMATE&a! Finish tasks and find the impostors."
+  role-impostor: "&cYou are an &lIMPOSTOR&c! Kill crewmates, sabotage, and blend in. Teammates: &e{teammates}"
+  killed: "&c{killer} &7eliminated &e{victim}&7."
+  you-killed: "&cYou eliminated &e{victim}&c. Cooldown &f{cooldown}s&c."
+  you-died: "&cYou were killed! You are now a ghost — finish tasks silently."
+  body-reported: "&6&lBODY REPORTED&6 by &e{reporter}&6! Victim: &c{victim}"
+  emergency-called: "&6&lEMERGENCY MEETING&6 called by &e{caller}&6!"
+  discussion: "&eDiscuss! Voting opens in &f{seconds}&e seconds."
+  voting: "&eVote now! Open the Voting Book. &f{seconds}&e seconds left."
+  vote-cast: "&aVote recorded for &e{target}&a."
+  vote-skip: "&7You voted to skip."
+  already-voted: "&cYou already voted."
+  ejected: "&c{player} &7was ejected. &8({role})"
+  ejected-unknown: "&c{player} &7was ejected. &8(role hidden)"
+  skipped: "&7No one was ejected. (&f{votes}&7 skip votes)"
+  tie: "&7Vote tied. No one was ejected."
+  tasks-done: "&aAll tasks complete! Crewmates win!"
+  impostors-win: "&cImpostors win! They outnumber the crew."
+  crewmates-win: "&aCrewmates win! All impostors ejected."
+  sabotage-lights: "&c&lLights sabotaged! &7Find the electrical panel."
+  sabotage-reactor: "&c&lReactor meltdown! &7Everyone must click a reactor panel!"
+  sabotage-fixed: "&aSabotage resolved!"
+  sabotage-failed: "&cReactor exploded! Impostors win!"
+  sabotage-cooldown: "&cSabotage ready in &e{seconds}&c seconds."
+  vent-enter: "&8You slipped into a vent..."
+  vent-exit: "&8You climbed out of a vent."
+  no-vents: "&cNo vents linked in this arena."
+  kill-cooldown: "&cKill ready in &e{seconds}&c seconds."
+  emergency-cooldown: "&cEmergency button ready in &e{seconds}&c seconds."
+  ghosts-cant: "&7Ghosts can't do that."
+  task-progress: "&aTask progress: &e{done}/{total} &7({percent}%)"
+  task-complete: "&aCompleted &e{task}&a! (&f{done}/{total}&a)"
+  near-task: "&7Stand near &e{task}&7 and right-click your tablet."
+  game-over: "&eGame over! &f{winner}"
+  gems-earned: "&7+&e{gems} &7gems (&f{points}&7 arcade points)"
+  points-self: "&7Arcade points: &e{points}"
+  points-other: "&e{player}&7 has &e{points}&7 arcade points."
+  points-added: "&aAdded &e{amount}&a points to &e{player}&a. New balance: &e{points}"
+  points-removed: "&eRemoved &e{amount}&e points from &e{player}&e. New balance: &e{points}"
+  points-set: "&aSet &e{player}&a's points to &e{points}"
+  redeem-success: "&aRedeemed &e{amount}&a points from &e{player}&a. Remaining: &e{points}"
+  not-enough-points: "&c{player} only has &e{points}&c points."
+  arena-created: "&aCreated arena &e{arena}&a."
+  arena-deleted: "&aDeleted arena &e{arena}&a."
+  lobby-set: "&aSet lobby for &e{arena}&a."
+  cafeteria-set: "&aSet cafeteria for &e{arena}&a."
+  spawn-added: "&aAdded spawn #{index} for &e{arena}&a."
+  button-set: "&aSet emergency button for &e{arena}&a."
+  task-added: "&aAdded task &e{task}&a at your location for &e{arena}&a."
+  vent-added: "&aAdded vent #{index} for &e{arena}&a."
+  electrical-set: "&aSet electrical panel for &e{arena}&a."
+  reactor-added: "&aAdded reactor panel #{index} for &e{arena}&a."
+  fee-set: "&aEntry fee for &e{arena}&a set to &e{fee}&a."
+  reloaded: "&aConfiguration reloaded."
+  force-stopped: "&aForce-stopped the game in &e{arena}&a."
+  force-started: "&aForce-started &e{arena}&a."
+  economy-missing: "&cNo economy provider is available for entry fees."
+  not-enough-money: "&cYou need &e{amount}&c but only have &e{balance}&c."

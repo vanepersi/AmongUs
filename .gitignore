@@ -1,0 +1,12 @@
+.gradle/
+build/
+out/
+.idea/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+*.class
+*.log
+run/
+test-server/

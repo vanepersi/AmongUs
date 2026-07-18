@@ -1,0 +1,33 @@
+name: AmongUs
+version: '${version}'
+main: dev.genesi.amongus.AmongUsPlugin
+api-version: '26.1'
+authors: [Genesi]
+description: Among Us for Paper — crewmates, impostors, tasks, vents, meetings, and sabotage.
+depend: [GenesiGamesApi]
+softdepend: [Vault, GenesiCore]
+
+commands:
+  amongus:
+    description: Play Among Us on the Club.
+    usage: /amongus <join|leave|start|report|sabotage|tasks|points|arenas|info|help>
+    aliases: [au, among, sus]
+  amongusadmin:
+    description: Admin setup and control for Among Us arenas.
+    usage: /amongusadmin <subcommand>
+    aliases: [auadmin, aua]
+    permission: amongus.admin
+
+permissions:
+  amongus.use:
+    description: Join and play Among Us arenas.
+    default: true
+  amongus.points:
+    description: View your arcade points balance.
+    default: true
+  amongus.admin:
+    description: Manage arenas, force games, and redeem points.
+    default: op
+  amongus.bypass.fee:
+    description: Join without paying the entry fee.
+    default: false
