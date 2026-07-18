@@ -19,9 +19,12 @@ if [[ -z "${SSHPASS:-${CLUB_SFTP_PASS:-}}" ]]; then
 fi
 export SSHPASS="${SSHPASS:-$CLUB_SFTP_PASS}"
 
-echo "==> Uploading $(basename "$JAR") to Club ($USER@$HOST:$PORT)"
+TMP="/tmp/AmongUs-1.0.0.jar"
+cp "$JAR" "$TMP"
+
+echo "==> Uploading AmongUs-1.0.0.jar to Club ($USER@$HOST:$PORT)"
 sshpass -e sftp -o StrictHostKeyChecking=no -o PreferredAuthentications=password -o PubkeyAuthentication=no -P "$PORT" "$USER@$HOST" <<EOF
-put $JAR plugins/AmongUs-1.0.0.jar
+put $TMP plugins/AmongUs-1.0.0.jar
 ls plugins/AmongUs*
 EOF
 
